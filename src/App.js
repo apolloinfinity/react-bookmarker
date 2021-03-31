@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 
+// Components
+import Header from './components/Header';
+import Form from './components/Form';
+import List from './components/List';
+
 function App() {
+  // Functions and properties for components here
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App container'>
+      <div className='row bg-white rounded mt-5 shadow-sm p-4'>
+        <Header />
+        <Form />
+      </div>
+      <List />
     </div>
   );
 }
