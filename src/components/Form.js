@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import Button from './Button';
 
-const Form = () => {
+const Form = ({ buttonStyle }) => {
   return (
     <div className='mt-5 text-center'>
       <h2 className='text-black-50'>Bookmark Your Favorite Sites</h2>
@@ -33,7 +33,7 @@ const Form = () => {
           />
         </div>
       </form>
-      <Button />
+      <Button btnStyle={buttonStyle.primary} btnText={'Submit'} />
     </div>
   );
 };
