@@ -1,16 +1,26 @@
 import React from 'react';
-import Button from './Button';
+import Button from './shared/Button';
 
-const Bookmarks = ({ buttonStyle }) => {
-  return (
-    <li className='list-group-item d-flex justify-content-between align-items-center'>
-      <a href='/mew'>Apple</a>
-      <div className='d-flex w-25 justify-content-evenly'>
-        <Button btnStyle={buttonStyle.secondary} btnText={'Visit'} />
-        <Button btnStyle={buttonStyle.danger} btnText={'Delete'} />
-      </div>
-    </li>
-  );
+const Bookmark = ({ buttonStyle, bookmark }) => {
+	return (
+		<li
+			className='list-group-item d-flex justify-content-between align-items-center'
+			id={bookmark._id}
+		>
+			<p>{bookmark.urlName}</p>
+			<div className='d-flex w-25 justify-content-evenly'>
+				<a
+					href={bookmark.url}
+					target='_blank'
+					rel='noreferrer'
+					className='btn btn-success'
+				>
+					Visit
+				</a>
+				<Button btnStyle={buttonStyle.secondary}>Delete</Button>
+			</div>
+		</li>
+	);
 };
 
-export default Bookmarks;
+export default Bookmark;

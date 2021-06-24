@@ -1,14 +1,15 @@
-import React from 'react';
-import Bookmarks from './Bookmark';
+import Bookmark from './Bookmark';
 
-const BookmarkList = ({ buttonStyle }) => {
-  return (
-    <div className='row bg-white rounded mt-5 shadow-sm p-4'>
-      <ul className='list-group'>
-        <Bookmarks buttonStyle={buttonStyle} />
-      </ul>
-    </div>
-  );
+const BookmarkList = ({ buttonStyle, bookmarks }) => {
+	return (
+		<div className='row bg-white rounded mt-5 shadow-sm p-4'>
+			<ul className='list-group'>
+				{bookmarks.map((bookmark, index) => (
+					<Bookmark key={index} bookmark={bookmark} buttonStyle={buttonStyle} />
+				))}
+			</ul>
+		</div>
+	);
 };
 
 export default BookmarkList;
