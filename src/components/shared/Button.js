@@ -1,12 +1,12 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 const Button = ({ btnStyle, btnType, children }) => {
 	return (
-		<div>
+		<Fragment>
 			<button className={`btn ${btnStyle}`} type={btnType}>
 				{children}
 			</button>
-		</div>
+		</Fragment>
 	);
 };
 
