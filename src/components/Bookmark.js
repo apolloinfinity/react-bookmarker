@@ -1,14 +1,13 @@
 import React from 'react';
-import Button from './shared/Button';
 
-const Bookmark = ({ buttonStyle, bookmark }) => {
+const Bookmark = ({ bookmark, onDelete }) => {
 	return (
 		<li
 			className='list-group-item d-flex justify-content-between align-items-center'
 			id={bookmark._id}
 		>
-			<p>{bookmark.urlName}</p>
-			<div className='d-flex w-25 justify-content-evenly'>
+			<p className='fs-4 m-0 text-info bookmark-name'>{bookmark.urlName}</p>
+			<div className='d-flex gap-2 justify-content-evenly actions'>
 				<a
 					href={bookmark.url}
 					target='_blank'
@@ -17,7 +16,12 @@ const Bookmark = ({ buttonStyle, bookmark }) => {
 				>
 					Visit
 				</a>
-				<Button btnStyle={buttonStyle.secondary}>Delete</Button>
+				<button
+					className='btn btn-outline-danger'
+					onClick={() => onDelete(bookmark._id)}
+				>
+					Delete
+				</button>
 			</div>
 		</li>
 	);
