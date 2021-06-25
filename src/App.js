@@ -7,21 +7,30 @@ import BookmarkList from './components/BookmarkList';
 
 function App() {
 	// Functions and properties for components here
-	const [ loadBookmarks, setLoadBookmarks ] = useState([]);
+	const [ bookmarks, setBookmarks ] = useState([]);
 
 	useEffect(() => {
 		const getBookmarks = async () => {
 			const bookmarksFromServer = await fetchBookmarks();
-			setLoadBookmarks(bookmarksFromServer);
+			setBookmarks(bookmarksFromServer);
 		};
 
 		getBookmarks();
 	}, []);
 
-	console.log(loadBookmarks);
+	// console.log(bookmarks);
 
 	const addBookmarkHandler = async (bookmark) => {
 		addBookmark(bookmark);
+	};
+
+	const deleteBookmarkHandler = async (id) => {
+		const res = await fetch(`http://localhost:5000/api/bookmark/${id}`, {
+			method: 'DELETE'
+		});
+		const filtered = bookmarks.filter((bookmark) => bookmark._id !== id);
+
+		res.status === 200 ? setBookmarks(filtered) : alert('Error Deleting This Task');
 	};
 
 	const fetchBookmarks = async () => {
@@ -41,7 +50,7 @@ function App() {
 		});
 
 		const data = await res.json();
-		setLoadBookmarks([ ...loadBookmarks, data.data ]);
+		setBookmarks([ ...bookmarks, data.data ]);
 	};
 
 	const buttonStyle = {
@@ -51,14 +60,17 @@ function App() {
 	};
 
 	return (
-		<div className='App container'>
+		<div className='container'>
 			<Header />
-			<div className='row bg-white rounded mt-5 shadow-sm p-4'>
+			<div className='row bg-white rounded mt-3 shadow-sm p-4'>
 				<Form buttonStyle={buttonStyle} onAddBookmark={addBookmarkHandler} />
 			</div>
-			{loadBookmarks.length !== 0 && (
-				<BookmarkList buttonStyle={buttonStyle} bookmarks={loadBookmarks} />
-			)}
+
+			<BookmarkList
+				buttonStyle={buttonStyle}
+				bookmarks={bookmarks}
+				deleteBookmarkHandler={deleteBookmarkHandler}
+			/>
 		</div>
 	);
 }
