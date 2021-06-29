@@ -6,7 +6,7 @@ const Bookmark = ({ bookmark, onDelete }) => {
 			className='list-group-item d-flex justify-content-between align-items-center'
 			id={bookmark._id}
 		>
-			<p className='fs-4 m-0 text-info bookmark-name'>{bookmark.urlName}</p>
+			<p className='fs-4 m-0 text-primary bookmark-name'>{bookmark.urlName}</p>
 			<div className='d-flex gap-2 justify-content-evenly actions'>
 				<a
 					href={bookmark.url}
